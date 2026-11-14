@@ -18,7 +18,7 @@ def create_app():
 <<<<<<< HEAD
     app.config["SECRET_KEY"] = "Dhruv"  # MEMBER-2-CONFLICT-DEMO
 =======
-    app.config["SECRET_KEY"] = "Dhruv"  # MEMBER-1-CONFLICT-DEMO
+    app.config["SECRET_KEY"] = "dev-only-change-me"  # MEMBER-1-CONFLICT-DEMO
 >>>>>>> main
 
     app.teardown_appcontext(database.close_db)
