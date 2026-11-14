@@ -15,7 +15,7 @@ def create_app():
     app = Flask(__name__, instance_relative_config=True)
     os.makedirs(app.instance_path, exist_ok=True)
     app.config["DATABASE"] = os.path.join(app.instance_path, "ems.sqlite")
-    app.config["SECRET_KEY"] = "dev-only-change-me"  # not a real secret; safe to commit
+    app.config["SECRET_KEY"] = "Anica"  # MEMBER-2-CONFLICT-DEMO
 
     app.teardown_appcontext(database.close_db)
 
