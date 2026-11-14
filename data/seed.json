@@ -1,0 +1,218 @@
+{
+  "departments": [
+    { "name": "Engineering",       "description": "Software development and QA" },
+    { "name": "Human Resources",   "description": "Recruitment and employee welfare" },
+    { "name": "Finance",           "description": "Accounts, payroll and budgeting" },
+    { "name": "Sales",             "description": "Client acquisition and account management" },
+    { "name": "Marketing",         "description": "Brand, campaigns and communications" }
+  ],
+
+  "employees": [
+    {
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "phone": "9876543210",
+      "designation": "Senior Software Engineer",
+      "base_salary": 85000,
+      "department": "Engineering",
+      "join_date": "2022-04-11",
+      "status": "active"
+    },
+    {
+      "name": "Bob Smith",
+      "email": "bob.smith@example.com",
+      "phone": "9876543211",
+      "designation": "Software Engineer",
+      "base_salary": 62000,
+      "department": "Engineering",
+      "join_date": "2023-01-16",
+      "status": "active"
+    },
+    {
+      "name": "Carol Diaz",
+      "email": "carol.diaz@example.com",
+      "phone": "9876543212",
+      "designation": "HR Manager",
+      "base_salary": 70000,
+      "department": "Human Resources",
+      "join_date": "2021-09-02",
+      "status": "active"
+    },
+    {
+      "name": "David Kumar",
+      "email": "david.kumar@example.com",
+      "phone": "9876543213",
+      "designation": "Accountant",
+      "base_salary": 55000,
+      "department": "Finance",
+      "join_date": "2022-11-28",
+      "status": "active"
+    },
+    {
+      "name": "Eva Martinez",
+      "email": "eva.martinez@example.com",
+      "phone": "9876543214",
+      "designation": "Sales Executive",
+      "base_salary": 48000,
+      "department": "Sales",
+      "join_date": "2023-06-20",
+      "status": "active"
+    },
+    {
+      "name": "Frank Chen",
+      "email": "frank.chen@example.com",
+      "phone": "9876543215",
+      "designation": "Marketing Lead",
+      "base_salary": 68000,
+      "department": "Marketing",
+      "join_date": "2020-03-05",
+      "status": "active"
+    },
+    {
+      "name": "Grace Nair",
+      "email": "grace.nair@example.com",
+      "phone": "9876543216",
+      "designation": "QA Engineer",
+      "base_salary": 52000,
+      "department": "Engineering",
+      "join_date": "2024-02-12",
+      "status": "active"
+    },
+    {
+      "name": "Henry Ofori",
+      "email": "henry.ofori@example.com",
+      "phone": "9876543217",
+      "designation": "Junior Developer",
+      "base_salary": 38000,
+      "department": "Engineering",
+      "join_date": "2024-08-01",
+      "status": "active"
+    },
+    {
+      "name": "Ishita Patel",
+      "email": "ishita.patel@example.com",
+      "phone": "9876543218",
+      "designation": "Recruiter",
+      "base_salary": 45000,
+      "department": "Human Resources",
+      "join_date": "2023-10-09",
+      "status": "active"
+    },
+    {
+      "name": "Jack Wilson",
+      "email": "jack.wilson@example.com",
+      "phone": "9876543219",
+      "designation": "Sales Manager",
+      "base_salary": 72000,
+      "department": "Sales",
+      "join_date": "2021-07-19",
+      "status": "active"
+    },
+    {
+      "name": "Kavya Reddy",
+      "email": "kavya.reddy@example.com",
+      "phone": "9876543220",
+      "designation": "Account Executive",
+      "base_salary": 50000,
+      "department": "Finance",
+      "join_date": "2022-05-30",
+      "status": "active"
+    },
+    {
+      "name": "Liam O'Brien",
+      "email": "liam.obrien@example.com",
+      "phone": "9876543221",
+      "designation": "Marketing Specialist",
+      "base_salary": 46000,
+      "department": "Marketing",
+      "join_date": "2023-12-04",
+      "status": "inactive"
+    }
+  ],
+
+  "attendance": [
+    { "employee_email": "alice.johnson@example.com", "date": "2026-11-03", "status": "present" },
+    { "employee_email": "alice.johnson@example.com", "date": "2026-11-04", "status": "present" },
+    { "employee_email": "alice.johnson@example.com", "date": "2026-11-05", "status": "present" },
+    { "employee_email": "alice.johnson@example.com", "date": "2026-11-06", "status": "absent" },
+    { "employee_email": "alice.johnson@example.com", "date": "2026-11-07", "status": "present" },
+
+    { "employee_email": "bob.smith@example.com",     "date": "2026-11-03", "status": "present" },
+    { "employee_email": "bob.smith@example.com",     "date": "2026-11-04", "status": "half-day" },
+    { "employee_email": "bob.smith@example.com",     "date": "2026-11-05", "status": "present" },
+    { "employee_email": "bob.smith@example.com",     "date": "2026-11-06", "status": "present" },
+    { "employee_email": "bob.smith@example.com",     "date": "2026-11-07", "status": "absent" },
+
+    { "employee_email": "carol.diaz@example.com",    "date": "2026-11-03", "status": "present" },
+    { "employee_email": "carol.diaz@example.com",    "date": "2026-11-04", "status": "present" },
+    { "employee_email": "carol.diaz@example.com",    "date": "2026-11-05", "status": "present" },
+    { "employee_email": "carol.diaz@example.com",    "date": "2026-11-06", "status": "present" },
+    { "employee_email": "carol.diaz@example.com",    "date": "2026-11-07", "status": "present" },
+
+    { "employee_email": "david.kumar@example.com",   "date": "2026-11-03", "status": "present" },
+    { "employee_email": "david.kumar@example.com",   "date": "2026-11-04", "status": "absent" },
+    { "employee_email": "david.kumar@example.com",   "date": "2026-11-05", "status": "present" },
+
+    { "employee_email": "eva.martinez@example.com",  "date": "2026-11-03", "status": "present" },
+    { "employee_email": "eva.martinez@example.com",  "date": "2026-11-04", "status": "present" },
+    { "employee_email": "eva.martinez@example.com",  "date": "2026-11-05", "status": "absent" },
+    { "employee_email": "eva.martinez@example.com",  "date": "2026-11-06", "status": "present" },
+    { "employee_email": "eva.martinez@example.com",  "date": "2026-11-07", "status": "present" },
+
+    { "employee_email": "frank.chen@example.com",    "date": "2026-11-03", "status": "present" },
+    { "employee_email": "frank.chen@example.com",    "date": "2026-11-04", "status": "present" },
+    { "employee_email": "frank.chen@example.com",    "date": "2026-11-05", "status": "present" }
+  ],
+
+  "leaves": [
+    {
+      "employee_email": "bob.smith@example.com",
+      "start_date": "2026-11-18",
+      "end_date": "2026-11-20",
+      "reason": "Family function",
+      "status": "pending"
+    },
+    {
+      "employee_email": "eva.martinez@example.com",
+      "start_date": "2026-11-25",
+      "end_date": "2026-11-26",
+      "reason": "Medical appointment",
+      "status": "pending"
+    },
+    {
+      "employee_email": "david.kumar@example.com",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-12",
+      "reason": "Personal travel",
+      "status": "approved"
+    },
+    {
+      "employee_email": "grace.nair@example.com",
+      "start_date": "2026-10-05",
+      "end_date": "2026-10-06",
+      "reason": "Sick leave",
+      "status": "rejected"
+    }
+  ],
+
+  "payroll": [
+    {
+      "employee_email": "alice.johnson@example.com",
+      "month": "2026-11",
+      "allowance": 5000,
+      "deduction": 1000
+    },
+    {
+      "employee_email": "bob.smith@example.com",
+      "month": "2026-11",
+      "allowance": 3000,
+      "deduction": 500
+    },
+    {
+      "employee_email": "carol.diaz@example.com",
+      "month": "2026-11",
+      "allowance": 4000,
+      "deduction": 0
+    }
+  ]
+}
