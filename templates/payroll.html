@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Payroll{% endblock %}
+{% block content %}
+<h2>Payroll</h2>
+
+<details open>
+  <summary>Generate / Update Payslip</summary>
+  <form method="post" class="grid">
+
+    <div class="field">
+      <label for="pay-emp">Employee<span class="req">*</span></label>
+      <select id="pay-emp" name="employee_id" required>
+        <option value="">— Select an employee —</option>
+        {% for e in employees %}<option value="{{ e.id }}">{{ e.name }}</option>{% endfor %}
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="pay-month">Pay month<span class="req">*</span></label>
+      <input id="pay-month" name="month" type="month"
+             value="{{ current_month }}" required />
+    </div>
+
+    <div class="field">
+      <label for="pay-allowance">Allowance (₹)</label>
+      <input id="pay-allowance" name="allowance" type="number"
+             step="0.01" min="0" placeholder="5000" value="0" />
+      <span class="help">Bonus, HRA, or other additions.</span>
+    </div>
+
+    <div class="field">
+      <label for="pay-deduction">Manual deduction (₹)</label>
+      <input id="pay-deduction" name="deduction" type="number"
+             step="0.01" min="0" placeholder="1000" value="0" />
+      <span class="help">Taxes, PF, etc. Absence penalties are added automatically.</span>
+    </div>
+
+    <div class="form-actions" style="grid-column: 1 / -1;">
+      <button type="submit">Save payslip</button>
+    </div>
+
+  </form>
+  <p class="hint">
+    <strong>Note:</strong> Absent days in the selected month are automatically
+    converted into a salary deduction (1/30th of base per absent day).
+  </p>
+</details>
+
+<form method="get" class="row">
+  <input type="month" name="month" value="{{ month }}" />
+  <button type="submit">Filter</button>
+</form>
+
+<table>
+  <thead><tr><th>Employee</th><th>Month</th><th>Allowance</th><th>Deduction</th><th>Net Pay</th></tr></thead>
+  <tbody>
+    {% for p in payslips %}
+    <tr>
+      <td>{{ p.employee_name }}</td>
+      <td>{{ p.month }}</td>
+      <td>{{ "%.2f"|format(p.allowance) }}</td>
+      <td>{{ "%.2f"|format(p.deduction) }}</td>
+      <td><strong>{{ "%.2f"|format(p.net_pay) }}</strong></td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5">No payslips yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
