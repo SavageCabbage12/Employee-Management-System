@@ -23,7 +23,9 @@ def create_app():
         database.init_db()
 
     for bp in (
-        employee_bp, department_bp,):
+        employee_bp, department_bp, attendance_bp,
+        leave_bp, payroll_bp, dashboard_bp,
+    ):
         app.register_blueprint(bp)
 
     @app.template_filter("inr")

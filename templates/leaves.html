@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Leaves{% endblock %}
+{% block content %}
+<h2>Leave Management</h2>
+
+<details open>
+  <summary>Submit Leave Request</summary>
+  <form method="post" class="grid">
+
+    <div class="field">
+      <label for="leave-emp">Employee<span class="req">*</span></label>
+      <select id="leave-emp" name="employee_id" required>
+        <option value="">— Select an employee —</option>
+        {% for e in employees %}<option value="{{ e.id }}">{{ e.name }}</option>{% endfor %}
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="leave-from">From<span class="req">*</span></label>
+      <input id="leave-from" name="start_date" type="date" required />
+      <span class="help">First day of leave.</span>
+    </div>
+
+    <div class="field">
+      <label for="leave-to">To<span class="req">*</span></label>
+      <input id="leave-to" name="end_date" type="date" required />
+      <span class="help">Last day of leave (inclusive).</span>
+    </div>
+
+    <div class="field" style="grid-column: span 2;">
+      <label for="leave-reason">Reason</label>
+      <input id="leave-reason" name="reason"
+             placeholder="e.g. Family function, medical appointment" />
+      <span class="help">Optional, but helpful for the approving manager.</span>
+    </div>
+
+    <div class="form-actions" style="grid-column: 1 / -1;">
+      <button type="submit">Submit request</button>
+    </div>
+
+  </form>
+</details>
+
+<table>
+  <thead><tr><th>ID</th><th>Employee</th><th>From</th><th>To</th><th>Reason</th><th>Status</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for l in leaves %}
+    <tr>
+      <td>{{ l.id }}</td>
+      <td>{{ l.employee_name }}</td>
+      <td>{{ l.start_date }}</td>
+      <td>{{ l.end_date }}</td>
+      <td>{{ l.reason or '' }}</td>
+      <td><span class="badge {{ l.status }}">{{ l.status }}</span></td>
+      <td>
+        {% if l.status == 'pending' %}
+        <form method="post" action="{{ url_for('leave.decide', leave_id=l.id, action='approved') }}" style="display:inline">
+          <button type="submit" class="ok">Approve</button>
+        </form>
+        <form method="post" action="{{ url_for('leave.decide', leave_id=l.id, action='rejected') }}" style="display:inline">
+          <button type="submit" class="danger">Reject</button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="7">No leave requests.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
