@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Employees{% endblock %}
+{% block content %}
+<h2>Employees</h2>
+
+<form method="get" class="row">
+
+  <div class="field" style="flex: 2 1 280px;">
+    <label for="search-q">Search</label>
+    <input id="search-q" name="q" type="text"
+           placeholder="Name, email, or designation" value="{{ q }}" />
+  </div>
+
+  <div class="field">
+    <label for="search-dept">Department</label>
+    <select id="search-dept" name="department_id">
+      <option value="">All departments</option>
+      {% for d in departments %}
+        <option value="{{ d.id }}" {% if selected_dept == d.id %}selected{% endif %}>
+          {{ d.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button type="submit">Search</button>
+
+</form>
+
+<details>
+  <summary>➕ Add Employee</summary>
+  <form method="post" action="{{ url_for('employee.create') }}" class="grid">
+
+    <div class="field">
+      <label for="emp-name">Full name<span class="req">*</span></label>
+      <input id="emp-name" name="name" placeholder="e.g. Alice Johnson" required />
+    </div>
+
+    <div class="field">
+      <label for="emp-email">Email address<span class="req">*</span></label>
+      <input id="emp-email" name="email" type="email"
+             placeholder="alice.johnson@example.com" required />
+      <span class="help">Must be unique across all employees.</span>
+    </div>
+
+    <div class="field">
+      <label for="emp-phone">Phone number</label>
+      <input id="emp-phone" name="phone" placeholder="9876543210" />
+      <span class="help">10 digits, no spaces or dashes.</span>
+    </div>
+
+    <div class="field">
+      <label for="emp-desig">Designation</label>
+      <input id="emp-desig" name="designation" placeholder="e.g. Software Engineer" />
+      <span class="help">The employee's job title.</span>
+    </div>
+
+    <div class="field">
+      <label for="emp-salary">Base salary<span class="req">*</span></label>
+      <input id="emp-salary" name="base_salary" type="number"
+             step="0.01" min="0" placeholder="60000" required />
+      <span class="help">Monthly amount in ₹, before allowances.</span>
+    </div>
+
+    <div class="field">
+      <label for="emp-dept">Department</label>
+      <select id="emp-dept" name="department_id">
+        <option value="">— Unassigned —</option>
+        {% for d in departments %}<option value="{{ d.id }}">{{ d.name }}</option>{% endfor %}
+      </select>
+      <span class="help">Leave blank if not assigned yet.</span>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">Save employee</button>
+    </div>
+
+  </form>
+</details>
+
+<table>
+  <thead>
+    <tr><th>ID</th><th>Name</th><th>Email</th><th>Designation</th><th>Dept</th><th>Base Salary</th><th>Status</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    {% for e in employees %}
+    <tr>
+      <td>{{ e.id }}</td>
+      <td>{{ e.name }}</td>
+      <td>{{ e.email }}</td>
+      <td>{{ e.designation }}</td>
+      <td>{{ e.department_name or '—' }}</td>
+      <td>{{ "%.2f"|format(e.base_salary) }}</td>
+      <td>{{ e.status }}</td>
+      <td>
+        <form method="post" action="{{ url_for('employee.delete', emp_id=e.id) }}"
+              onsubmit="return confirm('Delete this employee?');">
+          <button class="danger" type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="8">No employees yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
