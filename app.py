@@ -15,11 +15,7 @@ def create_app():
     app = Flask(__name__, instance_relative_config=True)
     os.makedirs(app.instance_path, exist_ok=True)
     app.config["DATABASE"] = os.path.join(app.instance_path, "ems.sqlite")
-<<<<<<< HEAD
-    app.config["SECRET_KEY"] = "Dhruv"  # MEMBER-2-CONFLICT-DEMO
-=======
-    app.config["SECRET_KEY"] = "dev-only-change-me"  # MEMBER-1-CONFLICT-DEMO
->>>>>>> main
+    app.config["SECRET_KEY"] = "dev-only-change-me" 
 
     app.teardown_appcontext(database.close_db)
 
