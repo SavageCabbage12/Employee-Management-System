@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Attendance{% endblock %}
+{% block content %}
+<h2>Attendance</h2>
+
+<form method="get" class="row">
+  <label>Month: <input type="month" name="month" value="{{ month }}" /></label>
+  <button type="submit">Filter</button>
+</form>
+
+<details open>
+  <summary>Mark Attendance</summary>
+  <form method="post" class="row">
+
+    <div class="field" style="flex: 2 1 260px;">
+      <label for="att-emp">Employee<span class="req">*</span></label>
+      <select id="att-emp" name="employee_id" required>
+        <option value="">— Select an employee —</option>
+        {% for e in employees %}<option value="{{ e.id }}">{{ e.name }}</option>{% endfor %}
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="att-date">Date<span class="req">*</span></label>
+      <input id="att-date" name="date" type="date" value="{{ today }}" required />
+    </div>
+
+    <div class="field">
+      <label for="att-status">Status</label>
+      <select id="att-status" name="status">
+        <option value="present">Present</option>
+        <option value="half-day">Half-day (counts as present)</option>
+        <option value="absent">Absent</option>
+      </select>
+    </div>
+
+    <button type="submit">Save attendance</button>
+
+  </form>
+</details>
+
+<h3>Monthly summary — {{ month }}</h3>
+<table>
+  <thead><tr><th>Employee</th><th>Present</th><th>Total Marked</th><th>Attendance %</th></tr></thead>
+  <tbody>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r.employee.name }}</td>
+      <td>{{ r.present }}</td>
+      <td>{{ r.total }}</td>
+      <td><progress value="{{ r.percent }}" max="100"></progress> {{ r.percent }}%</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4">No data for this month.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
