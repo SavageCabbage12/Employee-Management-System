@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Departments{% endblock %}
+{% block content %}
+<h2>Departments</h2>
+
+<form method="post" class="row">
+  <div class="field">
+    <label for="dept-name">Department name<span class="req">*</span></label>
+    <input id="dept-name" name="name"
+           placeholder="e.g. Engineering" required />
+  </div>
+
+  <div class="field" style="flex: 2 1 320px;">
+    <label for="dept-desc">Description</label>
+    <input id="dept-desc" name="description"
+           placeholder="What does this department do?" />
+  </div>
+
+  <button type="submit">Create department</button>
+</form>
+
+<table>
+  <thead><tr><th>ID</th><th>Name</th><th>Description</th><th>Employees</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for d in departments %}
+    <tr>
+      <td>{{ d.id }}</td>
+      <td>{{ d.name }}</td>
+      <td>{{ d.description or '' }}</td>
+      <td>{{ d.employee_count }}</td>
+      <td>
+        <form method="post" action="{{ url_for('department.delete', dept_id=d.id) }}"
+              onsubmit="return confirm('Delete department?');">
+          <button class="danger" type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5">No departments yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

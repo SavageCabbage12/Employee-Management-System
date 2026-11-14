@@ -1,4 +1,462 @@
 /* ============================================================
+   Employee Management System — global stylesheet
+   Design tokens first, then layout, then components.
+   ============================================================ */
+
+:root {
+  /* Color palette — calm, professional, indigo accent */
+  --bg:            #f6f8fc;
+  --surface:       #ffffff;
+  --surface-alt:   #f9fafb;
+  --border:        #e5e7eb;
+  --border-strong: #d1d5db;
+
+  --ink:           #0f172a;
+  --ink-soft:      #334155;
+  --muted:         #64748b;
+  --muted-light:   #94a3b8;
+
+  --accent:        #4f46e5;
+  --accent-hover:  #4338ca;
+  --accent-soft:   #eef2ff;
+  --success:       #16a34a;
+  --success-soft:  #dcfce7;
+  --danger:        #dc2626;
+  --danger-soft:   #fee2e2;
+  --warning:       #d97706;
+  --warning-soft:  #fef3c7;
+
+  /* Spacing scale — every gap below is one of these */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+
+  /* Radii + shadows */
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow:    0 2px 8px rgba(15, 23, 42, 0.06),
+               0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.08);
+
+  --sidebar-w: 240px;
+  --topbar-h:  72px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ============================================================
+   App shell — sidebar + main column
+   ============================================================ */
+
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-5) var(--s-3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 0 var(--s-2) var(--s-5);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--s-4);
+}
+
+.brand-mark {
+  width: 36px; height: 36px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent), #7c3aed);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  display: grid;
+  place-items: center;
+  letter-spacing: 0.5px;
+}
+
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-text strong { font-size: 14px; color: var(--ink); }
+.brand-text small  { font-size: 11px; color: var(--muted); }
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 10px var(--s-3);
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-size: 13.5px;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.nav-item:hover {
+  background: var(--surface-alt);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-item.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.nav-item.is-active .nav-icon { color: var(--accent); }
+
+.nav-icon {
+  width: 18px; height: 18px;
+  display: inline-flex;
+  color: var(--muted);
+  transition: color 140ms ease;
+}
+
+.nav-icon svg { width: 100%; height: 100%; }
+
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-3) 0;
+  border-top: 1px solid var(--border);
+  margin-top: var(--s-4);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.dot-live {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 3px var(--success-soft);
+}
+
+/* ---------- Main column ---------- */
+
+.main-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;   /* allows children to shrink correctly */
+}
+
+.topbar {
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--s-6);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.page-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 2px 0 0;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: var(--s-2);
+  align-items: center;
+}
+
+/* The "smooth transition" — subtle fade-up on every route change */
+.page-content {
+  padding: var(--s-6);
+  animation: page-in 220ms ease-out;
+}
+
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+button, .btn {
+  font: inherit;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease,
+              color 140ms ease, box-shadow 140ms ease;
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--border-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+button:hover, .btn:hover {
+  background: var(--surface-alt);
+  text-decoration: none;
+}
+
+button[type="submit"]:not(.danger):not(.ghost):not(.ok) {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+button[type="submit"]:not(.danger):not(.ghost):not(.ok):hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+button.danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: transparent;
+}
+
+button.danger:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+button.ok {
+  background: var(--success-soft);
+  color: var(--success);
+  border-color: transparent;
+}
+
+button.ok:hover {
+  background: var(--success);
+  color: #fff;
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--muted);
+  border-color: transparent;
+}
+
+button.ghost:hover {
+  background: var(--surface-alt);
+  color: var(--ink);
+}
+
+/* ============================================================
+   Form controls
+   ============================================================ */
+
+input, select, textarea {
+  font: inherit;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--ink);
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+  width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: var(--s-1);
+}
+
+/* ============================================================
+   Layout helpers used inside pages
+   ============================================================ */
+
+.row {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: var(--s-5);
+}
+
+.row > * { width: auto; }
+
+.grid {
+  display: grid;
+  gap: var(--s-3);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-bottom: var(--s-5);
+}
+
+.grid > button { width: 100%; justify-content: center; }
+
+/* ============================================================
+   Tables — de-densified, readable
+   ============================================================ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-top: var(--s-4);
+}
+
+thead th {
+  text-align: left;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-weight: 600;
+  background: var(--surface-alt);
+  padding: 10px var(--s-4);
+  border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+  padding: 12px var(--s-4);
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: var(--surface-alt); }
+
+/* ============================================================
+   Details blocks (the collapsible forms)
+   ============================================================ */
+
+details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--s-3) var(--s-4);
+  margin-bottom: var(--s-5);
+  box-shadow: var(--shadow-sm);
+}
+
+details[open] {
+  box-shadow: var(--shadow);
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink-soft);
+  padding: var(--s-1) 0;
+}
+
+summary:hover { color: var(--accent); }
+
+details > form { margin-top: var(--s-3); }
+
+/* ============================================================
+   Badges
+   ============================================================ */
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+.badge.pending  { background: var(--warning-soft); color: var(--warning); }
+.badge.approved { background: var(--success-soft); color: var(--success); }
+.badge.rejected { background: var(--danger-soft);  color: var(--danger); }
+
+.hint {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: var(--s-2);
+}
+
+/* ============================================================
+   Responsive — collapse sidebar on small screens
+   ============================================================ */
+
+@media (max-width: 880px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav { flex-direction: row; overflow-x: auto; gap: 4px; }
+  .nav-item { white-space: nowrap; }
+  .page-content { padding: var(--s-4); }
+  .topbar { padding: 0 var(--s-4); }
+}
+
+/* ============================================================
    Dashboard-specific components
    ============================================================ */
 
@@ -172,4 +630,74 @@
   font-size: 13px;
   padding: var(--s-5) 0;
   text-align: center;
+}
+
+/* ============================================================
+   Form field component — label + input + help text
+   ============================================================ */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field > label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+.field > label .req {
+  color: var(--danger);
+  margin-left: 2px;
+}
+
+.field .help {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.field .help code {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  padding: 0 4px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  color: var(--ink-soft);
+}
+
+/* When a field is inside .grid or .row, let it fill */
+.grid > .field { width: 100%; }
+.row  > .field { flex: 1 1 200px; }
+
+/* Make .row wrap nicely with the new field structure */
+.row {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: var(--s-5);
+}
+
+/* Form action bar — right-aligned buttons at the bottom of a form */
+.form-actions {
+  display: flex;
+  gap: var(--s-2);
+  justify-content: flex-end;
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--border);
+}
+
+/* Slightly larger padding on inputs inside .field to feel roomier */
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
 }
