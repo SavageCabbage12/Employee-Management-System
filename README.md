@@ -12,8 +12,8 @@ A comprehensive web application built with **Python (Flask)** and **SQLite** to 
 
 | Member | Roll No. | Responsibilities | Files Owned |
 | :--- | :--- | :--- | :--- |
-| **Student 1** (Dhruv Mehta) | MCA-XX | Project setup, Employee CRUD, Department management, Search functionality, Base CSS design system, Dashboard chart drawing. | `routes/employee.py`, `routes/department.py`, `templates/employees.html`, `templates/departments.html`, `static/js/main.js`, `.gitignore` |
-| **Student 2** (Partner Name) | MCA-YY | Attendance tracking, Leave management, Payroll calculator, Admin dashboard stats, Dashboard-specific CSS. | `routes/attendance.py`, `routes/leave.py`, `routes/payroll.py`, `routes/dashboard.py`, `templates/attendance.html`, `templates/leaves.html`, `templates/payroll.html`, `templates/dashboard.html` |
+| **Student 1** (Dhruv Mehta) | MCA-28 | Project setup, Employee CRUD, Department management, Search functionality, Base CSS design system, Dashboard chart drawing. | `routes/employee.py`, `routes/department.py`, `templates/employees.html`, `templates/departments.html`, `static/js/main.js`, `.gitignore` |
+| **Student 2** (Partner Name) | MCA-28 | Attendance tracking, Leave management, Payroll calculator, Admin dashboard stats, Dashboard-specific CSS. | `routes/attendance.py`, `routes/leave.py`, `routes/payroll.py`, `routes/dashboard.py`, `templates/attendance.html`, `templates/leaves.html`, `templates/payroll.html`, `templates/dashboard.html` |
 | **Both** | — | Database schema design, backend models, Flask app initialization, README & CONTRIBUTING documentation. | `app.py`, `database.py`, `models.py`, `static/css/style.css` |
 
 ## ✨ Features
@@ -66,3 +66,18 @@ Employee-Management-System/
 │   └── js/main.js          # Canvas chart drawing logic
 └── data/
     └── seed.json           # Sample data for testing
+
+## 🚀 Installation & Execution
+
+### Prerequisites
+- **Python 3.10** or higher installed on your system.
+- **Git** installed and configured.
+- A modern web browser (Chrome, Firefox, Edge, or Safari).
+
+### Step-by-Step Setup
+
+1. **Clone the repository:**
+   Open your terminal and run:
+   ```bash
+   git clone https://github.com/SavageCabbage12/Employee-Management-System.git
+   cd Employee-Management-System
